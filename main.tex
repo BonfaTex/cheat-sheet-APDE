@@ -10,12 +10,23 @@
 \usepackage{cancel}
 \usepackage{yhmath}
 \usepackage{color}
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+\usepackage{caption}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
 
 \usepackage{nicefrac, xfrac}
 %\usepackage{mathtools}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\sca}[1]{\left\langle #1 \right\rangle}
+
+%\usepackage{xcolor}
+\usepackage{titlesec}
 
 
 % Bold
@@ -169,19 +180,12 @@
 \usepackage{dsfont} % per funzione indicatrice
 \newcommand{\Ind}{\mathds{1}} % funzione indicatrice
 
-\DeclareMathOperator{\MCD}{MCD}
 \DeclareMathOperator{\Det}{det} % determinante
-\DeclareMathOperator{\Var}{Var} % varianza
-\DeclareMathOperator{\Cov}{Cov} % covarianza
 \DeclareMathOperator{\Img}{Im}
-\DeclareMathOperator{\Col}{Col}
 \DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\Bi}{Bi} % binomiale
-\DeclareMathOperator{\Be}{Be} % bernoulli
 \DeclareMathOperator{\ArgMin}{ArgMin}
-\DeclareMathOperator{\SSSS}{SS}
-
-\newcommand{\Xn}{\overline{X}_n}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\Lip}{Lip}
 
 \renewcommand{\theta}{\vartheta}
 
@@ -248,7 +252,7 @@
 \thmnote{\nobreakspace\the\thm@notefont\normalfont\bf\scshape\footnotesize{(#3)}}}% Optional theorem note
 
 \theoremstyle{demo}
-\newtheorem*{proofT}{\underline{Proof}}
+\newtheorem*{proofT}{\textbf{Proof}}
 
 \RequirePackage[framemethod=default]{mdframed}
 
