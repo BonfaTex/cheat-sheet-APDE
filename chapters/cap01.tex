@@ -1,4 +1,12 @@
-%!TEX root = main.tex
+%!TEX root = ../main.tex
+
+% =================================================
+% =================================================
+
+\section{\color{forestgreen(web)}Hilbertian Sobolev Spaces }
+
+% =================================================
+% =================================================
 
 % =================================================
 
@@ -65,7 +73,7 @@ $H^1_0(I):=\overline{\Dc(I)}^{H^1}$, it is a separable Hilbert space if endowed 
 \norm{u}_{L^2}\leq (b-a)\cdot \norm{u'}_{L^2}
 \end{equation*}
 
-\textbf{Proof.} See Whiteboards :)
+\textbf{\color{lavender(floral)}Proof.} See whiteboards u.u
 
 \smallskip
 
@@ -150,7 +158,7 @@ $
 \norm{u}_{H^2}\leq \sqrt{(b-a)^4+(b-a)^2+1}\cdot \norm{u''}_{L^2}
 \end{equation*}
 
-\textbf{Proof.} See Whiteboards :)
+\textbf{\color{lavender(floral)}Proof.} See whiteboards u.u
 
 \smallskip
 
@@ -442,8 +450,8 @@ However, we're interested in Sobolev Spaces, so in $u\in H^1(\Omega)\cap \Cc^0(\
 then $\overline{H^1(\Omega)\cap\Cc^0(\overline{\Omega})}^{H^1}=H^1(\Omega)$, thus we look for the continuous extension of $\gamma_{_0}$ on $H^1$. 
 
 \begin{Figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{images/density}
+    \center{
+    \includegraphics[width=0.9\linewidth]{images/density}\ \ }
 \end{Figure}
 
 Before doing so, we need the following: assume $\partial\Omega\in\Cc^\infty$, for every $x_0\in\partial\Omega$ we define $H^s(U_{x_0})$ where $U_{x_0}\subset\RR^{n-1}$ in the sense of local charts, so we found the meaning of $H^s(\partial\Omega)$.
@@ -480,10 +488,6 @@ We call $\gamma_{_0}$ \textbf{trace operator} of order 0, and $\Rc$ \textbf{lift
 
 We call $\gamma_j$ \textbf{trace operator} of order $j$.
 
-\smallskip
-
-\textbf{Rmk:} the spaces $H^{k-j-1/2}$ are \emph{optimal}.
-
 \rule{0.31\textwidth}{0.2pt}
 \smallskip
 
@@ -496,7 +500,7 @@ Finally, we can give a characterization of $H^k_0$:
 u\in H^k_0(\Omega) \quad\Longleftrightarrow\quad \gamma_j=0\quad\forall\,j=0:k-1
 \end{equation*}
 
-In other words: $H^k_0(\Omega)=\displaystyle\bigcup_j\text{ker}_{\gamma_j}\,.$
+In other words: $H^k_0(\Omega)=\bigcup_j\text{ker}_{\gamma_j}\,.$
 
 \rule{0.31\textwidth}{0.2pt}
 
@@ -577,20 +581,24 @@ If so, $\Div(u):=w$.
 \textbf{Thm.} Let $\Omega\subset\RR^n$ open bdd with $\partial\Omega\in\Lip$. Then, $\exists\,!$ lin. cont. surj. operator 
 \begin{gather*}
 \gamma_\nu:\Ev(\Omega)\to H^{-1/2}(\partial\Omega)\quad\text{such that} \\
-\gamma_\nu u=(u\cdot\nu)\big|_{\partial\Omega}\qquad\forall\, u\in\left[\Cc^0(\overline{\Omega})\right]^n
+\gamma_\nu u=u\cdot\nu\qquad\forall\, u\in\left[\Cc^0(\overline{\Omega})\right]^n
 \end{gather*}
 
 We call $\gamma_\nu$ \textbf{normal trace operator}.
 
+\begin{Figure}
+    \center{
+    \includegraphics[width=0.7\linewidth]{images/normal-trace.png}\ \ }
+\end{Figure}
+
 \rule{0.31\textwidth}{0.2pt}
-\smallskip
 
 \textbf{Thm (Generalized Gauss-Green formula).} Let $\Omega\subset\RR^n$ open bdd with $\partial\Omega\in\Lip$. Then:
 \begin{equation*}
 \int_\Omega u\cdot\nabla\varphi+\int_\Omega\varphi\,\Div u={}_{_{H^{\nicefrac{-1}{2}}}}\sca{\gamma_\nu u,\,\gamma_{_0}\varphi}_{_{H^{\nicefrac{1}{2}}}}
 \end{equation*}
 
-$\forall\, u\in\Ev(\Omega),\ \varphi\in H^1(\Omega)$. With more regularity, the rhs simply is
+$\forall\, u\in\Ev(\Omega),\ \varphi\in H^1(\Omega)$. With more reg. rhs is:
 \begin{equation*}
 \int_{\partial\Omega} (u\cdot\nu)\,\varphi
 \end{equation*}
@@ -605,13 +613,15 @@ $\forall\, u\in\Ev(\Omega),\ \varphi\in H^1(\Omega)$. With more regularity, the 
 
 Exercise class matter ...
 
-\rule{0.31\textwidth}{0.2pt}
 
-% =================================================
 
-\subsection{\color{red}Next argument}
 
-% =================================================
+
+
+
+\rule{0.31\textwidth}{1pt}
+
+\newcolumn
 
 
 
