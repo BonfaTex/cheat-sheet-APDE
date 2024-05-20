@@ -1,0 +1,159 @@
+%!TEX root = ../main.tex
+
+% =================================================
+% =================================================
+
+\vspace{-1em}
+
+\section{\texorpdfstring{\color{forestgreen(web)}Nonlinear PDEs}{}}
+
+% =================================================
+% =================================================
+
+$n\geq 2$, $\Omega\subset\RR^n$ open bdd with \emph{smooth} boundary
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}Homogeneous Dirichlet problem (semilinear)}{}}
+
+% =================================================
+
+$f:\RR\to\RR$, $f\in\Cc^1(\RR)$,
+\begin{equation*}
+\begin{cases}
+    -\Delta u = f(u) &\text{ in }\Omega\\
+    u=0 &\text{ on }\partial\Omega    
+\end{cases}
+\end{equation*}
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Brezis-Kato condition.} $n\geq 3$, $f$ satisfies the BK condition if $\exists\, C>0$ s.t.
+\begin{equation*}
+\left| f(s) \right|\leq C\left( 1+|s|^{2^*-1} \right)\qquad \forall\, s\in\RR \tag{BK}
+\end{equation*}
+
+where $2^*=\nicefrac{2n}{n-2}$ is the critical Sobolev exp. 
+
+\smallskip
+
+\textbf{Rmk:} $n\geq 3$ because for $n=2$ there is no critical exp, but one can write the BK cond. as
+\begin{equation*}
+\exists\, C\!>\!0,\,\overline{p}\!\in\![2,\infty)\, :\, \left| f(s) \right|\!\leq\! C\!\left( 1+|s|^{\overline{p}} \right)\ \forall\, s\!\in\!\RR
+\end{equation*} 
+
+\vspace{-1em}
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Def (Weak sol).} If BK holds, we can say that $u\in H^1_0(\Omega)$ is a weak solution if
+\begin{equation*}
+\int_\Omega \nabla u\ \nabla v=\int_\Omega f(u)\ v\quad\forall\,v\in H^1_0(\Omega)
+\end{equation*}
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Thm (Brezis-Kato).} $n\geq 3$, if BK holds then every weak sol is a classical sol.
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboards u.u
+
+\rule{0.31\textwidth}{0.2pt}
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}The role of the critical Sobolev exponent}{}}
+
+% =================================================
+
+\textbf{Def.} $X$ Banach, $J:X\to\RR$ functional. We say that $J$ is continuous if
+\begin{equation*}
+u_m\xrightarrow{X} u\quad \Longrightarrow\quad J(u_m)\rightarrow J(u)
+\end{equation*}
+
+In addiction, we say that $J$ if Fréchet differentiable at $u$ if $\exists\,L\in X'$ s.t.
+\begin{equation*}
+\lim_{\norm{u_m-u}\to 0}\frac{J(u_m)-J(u)-\sca{L,u_m-u}}{\norm{u_m-u}} =0
+\end{equation*}
+
+and we put $L=J'(u)$.
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+$X=H^1_0(\Omega)$, $J(u)=\norm{\nabla u}_2^2$, then
+\begin{equation*}
+\sca{J'(u),v}=2\int_\Omega \nabla u\ \nabla v
+\end{equation*}
+
+$X=L^p(\Omega)$, $2\leq p <\infty$, $J(u)=\norm{\nabla u}_p^p$, then
+\begin{equation*}
+\sca{J'(u),v}=p\int_\Omega |u|^{p-2}\,u\,v
+\end{equation*}
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Thm.} $n\geq 3$, if $2< p < 2^*$ then
+\begin{equation*}
+\circledast\,
+\begin{cases}
+    -\Delta u = u^{p-1} &\text{ in }\Omega\\
+    u >0 &\text{ in }\Omega\\
+    u=0 &\text{ on }\partial\Omega    
+\end{cases}
+\end{equation*}
+admits at least one solution.
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboards u.u
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Def.} $n\geq 2$, $\Omega\subset\RR^n$ is starshaped wrt $y\in\Omega$ if $\forall\, x \in\Omega$ the segment $xy$ is contained in $\Omega$.
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Thm (Pohozaev).} $n\geq 3$, $\Omega\subset\RR^n$ bounded starshaped domain, $p\geq 2^*$. Then $\circledast$ admits no classical sol (even with $u\neq 0$ in $\Omega$).
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Thm (Ni-Servin).} $n\geq 3$, the problem
+\begin{equation*}
+\begin{cases}
+    -\Delta u = u^{p-1} &\text{ in }\RR^n\\
+    u \geq 0 &\text{ in }\RR^n  
+\end{cases}
+\end{equation*}
+
+admits only $u\equiv 0$ as solution for $2<p<2^*$, instead $\exists\,\infty$-many solution for $p\geq 2^*$.
+
+\rule{0.31\textwidth}{0.2pt}
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}Stationary NS problem (quasilinear)}{}}
+
+% =================================================
+
+Check FSI
+
+\rule{0.31\textwidth}{1pt}
+
+
+
+
+
+
+
+
+
+

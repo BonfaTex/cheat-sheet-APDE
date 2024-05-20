@@ -1,0 +1,239 @@
+%!TEX root = ../main.tex
+
+% =================================================
+% =================================================
+
+\FSIsection{Helmholtz-Weyl scomposition}
+
+% =================================================
+% =================================================
+
+We consider vectorial fields $\bm{u}:\Omega\subseteq\RR^n\to\RR^n$. Capital bold letters denote vectorial functional spaces, e.g. $\mathbf{L}^2(\Omega)=\left[ L^2(\Omega) \right]^n$ or $\mathbf{H}^1(\Omega)= \left[ H^1(\Omega) \right]^n$.
+
+\smallskip
+
+Let $\Omega$ be omitted. We can exploit what we already know, such as
+\begin{itemize}
+
+\item[$\triangleright$] $\Lv^2$ is Hilbert with $\norm{\bm{u}}_{\Lv^2}^2=\displaystyle\int_\Omega \abs{\bm{u}}^2=\sum_{i=1}^n \norm{u_i}^2_{L^2}$
+
+\item[$\triangleright$] $\Hv^1$ is Hilbert with
+\begin{equation*}
+(\bm{u},\bm{v})_{\Hv^1}=(\bm{u},\bm{v})_{\Lv^2}+(\nabla\bm u,\nabla \bm v)_{\Lv^2}= \int_\Omega \Big( \nabla\bm u : \nabla \bm v + \bm u \bm v \Big)
+\end{equation*}
+where $\nabla\bm u:\nabla\bm v$ stands for the \emph{Euclidean scalar product} of the Jacobian matrices of $\bm u$ and $\bm v$. 
+
+\item[$\triangleright$] $\Hv_0^1\coloneq\overline{\bm \Dc}^{\,\Hv^1}\!$ is Hilbert, and via \emph{Poincaré's inequality}
+\begin{equation*}
+(\bm u,\bm v)_{\Hv^1}\approx(\bm u,\bm v)_{\Hv^1_0}=(\nabla\bm u,\nabla \bm v)_{\Lv^2}=\int_\Omega \nabla\bm u : \nabla \bm v
+\end{equation*}
+where symbol $\approx$ denotes \emph{equivalent norms}.
+
+\item[$\triangleright$] $\Ev\coloneq \left\{ \bm u\in \mathbf{L}^2;\ \nabla \cdot \bm u \in L^2 \right\}\equiv \Lv^2_{\text{div}}$ is Hilbert with
+\begin{equation*}
+(\bm u,\bm v)_\Ev=(\bm u,\bm v)_{\Lv^2}+(\nabla \cdot \bm u,\nabla \cdot\bm v)_{L^2} 
+\end{equation*}
+
+Since $\nabla\bm u\in \Lv^2 \impliesnotimplied \nabla\cdot\bm u\in L^2$ (only if $n=1$), then $\Hv^1 \subsetneqq \Ev \subset \Lv^2$. 
+
+We remark that when we say $\nabla\cdot\bm u\in L^2$ we means in weak (distributional) sense. Indeed, given $\bm u\in\Lv^2$ its weak divergence $\nabla\cdot \bm u\in H^{-1}$ is well defined as
+\begin{equation*}
+\dualH{\nabla\cdot\bm u,\ \varphi}{-1}{1}{0}=-\int_\Omega \bm u\cdot \nabla \varphi\qquad \forall\, \varphi \in H^1_0\ (\in\Dc)
+\end{equation*}
+
+If it happens that $\nabla\cdot \bm u$ is not only $H^{\text{-}1}\!$ but also $L^2$, then $\bm u\in \Ev$ \\ (\emph{"$\bm u$ in $\Lv^2$ with weak divergence in $L^2$, then $\bm u$ in $\Ev$" sounds similar to the older "$u$ in $L^2$ with weak derivative $u'$ in $L^2$, then $u$ in $H^1$"}).
+
+Moreover, for $\bm u\in\Ev$ the normal component of its trace $\gamma_{_\nu}(\bm u)\in H^{\text{-}1/2}$ is well defined and satisfy the \textbf{Generalized Gass-Green formula} (even if $\Omega$ is only Lipschitz):
+\begin{equation}
+\label{eq:GG}
+\int_\Omega \bm u\cdot \nabla \varphi+\int_\Omega \big(\nabla\cdot\bm u\big)\, \varphi = \dualT{\gamma_{_\nu}\bm u,\ \gamma_{_0}\varphi}{-1/2}{1/2}\qquad \forall \,\varphi\in H^1
+\end{equation}
+
+Hence, in some way $\Ev$ is an intermediate space: in $\Lv^2$ there are no traces, in $\Ev$ only normal traces, in $\Hv^1$ full traces. One can go through the def. of $\Lv^2_{\text{curl}}$ to find out that there only tangent traces are defined and, via \emph{Friedrich's inequality}, $\Lv^2_{\text{div}}\oplus\Lv^2_{\text{curl}}=\Hv^1$.
+
+\end{itemize}
+
+Let us introduce the following new spaces:
+\begin{itemize}
+\item[$\triangleright$] $\bm\Vc \coloneq \left\{ \bm u\in\bm\Dc;\ \nabla\cdot\bm u=0 \text{ in }\Omega \right\}$
+
+\item[$\triangleright$] $\Vv\coloneq \overline{\bm\Vc}^{\Hv^1} \!= \left\{ \bm u\in\mathbf{H}_0^1;\ \nabla\cdot\bm u=0\text{ in }\Omega\right\}\equiv\Hv^1_{0,\sigma}$, which is a closed subspace of $\Hv^1_0$ and hence, it is Hilbert if endowed with
+\begin{equation*}
+(\bm u,\bm v)_\Vv=(\nabla \bm u,\nabla \bm v)_{\Lv^2} 
+\end{equation*}
+
+Obviously, $\Vv\subset\Ev$ since free-div. $\impliesnotimplied$ $L^2$-div.
+
+\item[$\triangleright$] $\Gv_1\coloneq \overline{\bm\Vc}^{\Lv^2} \!= \left\{ \bm u\in\mathbf{L}^2;\ \nabla\cdot\bm u=0,\ \gamma_{_\nu} \bm u=0 \right\}\subset\Ev$ 
+
+$\mathbf{G}_2=\left\{ \bm u\in\mathbf{L}^2;\ \nabla\cdot\bm u=0,\ \exists\,g\in H^1\text{ s.t. }\bm u=\nabla g \right\}\subset\Ev$ 
+
+$\mathbf{G}_3=\left\{\bm u\in\mathbf{L}^2;\ \exists\,g\in H^1_0\text{ s.t. }\bm u=\nabla g \right\}\centernot\subset\Ev$
+
+We remark that in $\Gv_2$, the incompressibility constraint makes the scalar function $g$ harmonic:
+\begin{equation*}
+0=\nabla\cdot\bm u=\nabla\cdot\nabla g=\nabla^2 g=\Delta g
+\end{equation*}
+Instead, if you add the constraint in $\Gv_3$, you obtain $g\equiv 0$.
+
+\item[$\triangleright$] $\Ev_0\coloneq \ker(\gamma_{_\nu})=\left\{ \bm u\in\Ev;\ \gamma_{_\nu} \bm u=0 \right\}\subset \Ev $
+\end{itemize}
+\vspace{-0.5em}
+\rule{0.495\textwidth}{0.2pt}\smallskip
+
+All these definitions lead to the following properties:
+\vspace{-0.5em}
+\begin{gather*}
+\bm\Vc \overset{\delta}{\subset} \Vv \overset{\delta}{\subset} \Gv_1\subset\Ev_0, \qquad \Gv_1\oplus\Gv_2\subset\Ev, \qquad \Gv_2\cap \Ev_0=\{\bm 0\},\\
+\Gv_3 \cap \Ev = \left\{ \bm u \in \Lv^2;\ \exists\,g\in H^2\cap H^1_0 \text{ s.t. }\bm u=\nabla g \right\}, \\
+\Gv_3 \cap \Ev_0 = \left\{ \bm u \in \Lv^2;\ \exists\,g\in H^2_0 \text{ s.t. }\bm u=\nabla g \right\}.
+\end{gather*}
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboard \texttt{FSI-1} u.u
+
+\smallskip
+
+Instead, in dimension $n=1$ there hold
+\begin{gather*}
+\Ev\equiv H^1,\quad \bm\Vc=\{0\}\ \Longrightarrow\ \Vv=\Gv_1=\{0\},\\ \Gv_2=\RR,\quad \Gv_3=\big\{ u\in L^2;\ \underbracket[0.5pt]{\textstyle\int_\Omega u=0}_{\scriptstyle\text{zero average}}\big\}\equiv L^2_0.
+\end{gather*}
+
+\vspace{-0.5em}
+\rule{0.495\textwidth}{0.2pt}\smallskip
+
+\textbf{Thm(H-W scomposition).} $\Gv_1,\ \Gv_2,\ \Gv_3$ are mutually orthogonal (w.r.t. the $\Lv^2$ scalar product), and $\mathbf{L}^2=\mathbf{G}_{1}\oplus\mathbf{G}_{2}\oplus\mathbf{G}_{3}$. In other \emph{words}: 
+\begin{gather*}
+\mathbf{G}_{i}\perp\mathbf{G}_{j}\ \ \forall\,i\neq j,\qquad \forall\, \bm f \in \Lv^2\ \exists!\,(\bm f_1,\bm f_2,\bm f_3)\in\Gv_1\!\times\!\Gv_2\!\times\!\Gv_3 \\
+\qquad\qquad\qquad\qquad\text{ s.t. }\bm f= \bm f_1+\bm f_2+\bm f_3.
+\end{gather*}
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboard \texttt{FSI-2} u.u 
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+%\rule{0.495\textwidth}{0.2pt}
+
+\newcolumn
+
+% =================================================
+% =================================================
+
+\FSIsection{Stokes Problem (Stationary Linearized NS)}
+
+% =================================================
+% =================================================
+
+Let us consider the following problem:
+\begin{subequations}
+    \label{Stokes-problem}
+    \begin{align}[left=\empheqlbrace]
+    -\eta\Delta \bm u +\nabla p = \bm f &\qquad\text{ in }\Omega  \label{eq:sp1} \\
+    \nabla\cdot \bm u=0 &\qquad\text{ in }\Omega \label{eq:sp2} \\
+    \bm u=0 &\qquad\text{ on }\partial\Omega \label{eq:sp3}
+    \end{align}
+\end{subequations}
+
+where $\bm u=(u_1,\dots,u_n)$ (you may think $n=3$) is the velocity vector, $\Delta\bm u$ is the vector laplacian, $p$ is the scalar pressure of the fluid, $\eta>0$ its dynamic viscosity, and $\bm f\in\mathbf{L}^2$ is a given vector function representing the density of the external force applied to the fluid.
+
+Condition \eqref{eq:sp2} represents the \emph{incompressibility constraint}, while \eqref{eq:sp3} the \emph{non-slip boundary condition}, i.e. the case in which the fluid is adherent to the boundary of $\Omega$. One can use different bcs as long as there holds the GG formula \eqref{eq:GG} for $\bm u$ and $1$, which acts as a compatibility condition:
+\begin{equation*}
+\int_\Omega \bm u\ \cancel{\nabla 1} + \int_\Omega \big(\cancel{\nabla\cdot \bm u}\big)\, 1= \sca{\gamma_{_\nu}\bm u, 1}\quad\leadsto\quad \sca{\gamma_{_\nu}\bm u, 1}=0
+\end{equation*}
+
+In system \eqref{Stokes-problem}, the unknowns we look for are $\bm u$ and $p$. Notiche that \eqref{eq:sp1}+\eqref{eq:sp2} are $n+1$ scalar equations in the $n+1$ unknowns $u_1,\dots,u_n,p$ while \eqref{eq:sp3} gives just $n$ bcs. The reason is that $p$ appears in $\eqref{eq:sp1}$ only through its gradient, therefore the pressure is determined up to an additive constant (if $\overline{p}$ is a solution, $\overline{p}+k$ is a solution too). 
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\vspace{-0.5em}
+
+\FSIsubsection{Variational Formulation}
+
+It is natural to think about $\bm u\in\Vv$ and $p\in H^1\!/\RR$, then \eqref{eq:sp1} becomes
+\begin{equation*}
+\int_\Omega -\eta\Delta\bm u\ \bm v +\int_\Omega \nabla p\ \bm v =\int_\Omega \bm f\ \bm v\qquad \forall\, \bm v\in\Vv
+\end{equation*}
+
+The integrations by parts yield
+\begin{equation*}
+\eta \int_\Omega \nabla\bm u:\nabla\bm v-\int_{\partial\Omega}\eta\,\frac{\partial \bm u}{\partial \nu}\ \cancel{\bm v}+\int_{\partial\Omega} \cancel{\bm v} \cdot \nu\ p -\int_\Omega \cancel{\nabla\cdot\bm v}\ p = \int_\Omega \bm f\ \bm v
+\end{equation*}
+
+Then the \textbf{weak formulation} is 
+\begin{equation*}
+\big(\forall\,\bm f\in\Lv^2\big)\text{ Find }\bm u\in \Vv\text{ :}\quad \eta\int_\Omega \nabla \bm u : \nabla \bm v=\int_\Omega \bm f\ \bm v\quad \forall\,v\in\mathbf{V}\tag{WF1}
+\end{equation*}
+
+By LM, $\big(\forall\,\bm f\in\Lv^2\big)$ $\exists\,!\,\bm u \in \mathbf{V}$ satisfying (WF1).
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.5em}
+
+Now we are at the lowest level, but we'd like to recover the pressure in the formulation. Applying the blackbox called \emph{elliptic regularity theory}, 
+\begin{equation*}
+\big(\forall\,\bm f\in\Lv^2\big)\ \exists\,!\,\bm u \in \mathbf{V}\cap\Hv^2 \textit{ satisfying }\text{(WF1)}
+\end{equation*}
+
+Then undo the int. by parts over $\Delta\bm u$, and since $\Vv$ is dense in $\Gv_1$:
+\begin{equation*}
+\big(\forall\,\bm f\in\Lv^2\big)\ \exists\,!\,\bm u \in \mathbf{V}\cap\Hv^2 \textit{ satisfying } \int_\Omega \Big( \eta\Delta \bm u+\bm f\Big)\bm v=0\ \ \forall\,\bm v\in\Gv_1
+\end{equation*}
+
+This means that $\big( \eta\Delta \bm u+\bm f\big)\equiv \nabla p \perp \Gv_1$ in $\Lv^2$ $\Longrightarrow$ $\nabla p \in \mathbf{G}_2\oplus \mathbf{G_3}$, indeed a posteriori one can see the $p$ disappearing without integrate by parts:
+\begin{equation*}
+\int_\Omega {\nabla p}\ {\bm v} = 0\qquad\text{'cause}\qquad \nabla p\in \Gv_2\oplus\Gv_3,\ \bm v\in \Gv_1
+\end{equation*}
+
+Hence, (by definition of $\Gv_2\oplus\Gv_3$) $\exists\,!\,p\in H^1\!/\RR$ and we can state that
+\begin{gather*}
+\big(\forall\,\bm f\in\Lv^2\big)\ \exists\,!\,(\bm u,p) \in \big(\mathbf{V}\cap\Hv^2\big)\times\big(H^1\!/\RR\big) \\ 
+\textit{satisfying } \eqref{eq:sp1}+\eqref{eq:sp2}\textit{ a.e. and } \eqref{eq:sp3} \textit{ in the sense of traces}
+\end{gather*}
+
+which works as definition of \textbf{strong solution} (+ more reg. $\Rightarrow$ \textbf{classical}).
+
+\medskip
+
+\textbf{Rmk:} you may think that members of Eq.~\eqref{eq:sp1} are
+\begin{equation*}
+\underbracket[0.5pt]{\Delta\bm u\in \Gv_1\oplus\Gv_2}_{\textbf{\color{lavender(floral)}Proof.} \text{ See wb }\texttt{FSI-3} \text{ u.u}}\ \quad \nabla p\in \Gv_2\oplus\Gv_3\quad\qquad \bm f \in \Gv_1\oplus\Gv_2\oplus\Gv_3
+\end{equation*}
+
+and that velocity and pressure interact only on $\Gv_2$.
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Rmk:} there is another way to recover the pressure. See whiteboard \texttt{FSI-4}.
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\vspace{-0.5em}
+
+\FSIsubsection{Generalized Stokes Problem}
+
+Let $\Omega\subset\RR^{n\geq 2}$ open bdd connected with Lipschitz boundary. Set $\bm f\in\Hv^{-1}(\Omega)$, $\bm v_*\in \Hv^{1/2}(\partial\Omega)$, $g\in L^2(\Omega)$. If the compatibility condition
+\begin{equation*}
+\sca{\gamma_{_\nu}\bm v_*,1}=\int_\Omega g
+\end{equation*}
+
+is satisfied, then $\exists\,!$ weak solution $(\bm u,p)\in \Hv^1(\Omega)\times L^2_0(\Omega)$ of
+\begin{align*}[left=\empheqlbrace]
+-\eta\Delta \bm u +\nabla p = \bm f &\qquad\text{ in }\Omega \nonumber \\
+\nabla\cdot \bm u=g &\qquad\text{ in }\Omega \nonumber \\
+\bm u=\bm v_* &\qquad\text{ on }\partial\Omega \nonumber
+\end{align*}
+
+(here the spaces are \emph{weaker} bc we're not looking for strong solutions)
+
+\smallskip
+
+Moreover, $\exists\,C>0$ (depending only on $\Omega$, $n$) s.t.
+\begin{equation*}
+\norm{\bm u}_{\Hv^1}+\norm{p}_{L^2}\leq C \Big( \norm{\bm f}_{\Hv^{\text{-}1}}+\norm{\bm v_*}_{\Hv^{1/2}} + \norm{g}_{L^2} \Big)
+\end{equation*}
+
+\textbf{\color{lavender(floral)}Proof.} It's a very istructive proof, based on Bogovskii's operator and Nečas inequality. See whiteboard \texttt{FSI-5} u.u
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\newpage
+
+
+

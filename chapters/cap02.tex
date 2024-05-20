@@ -1,15 +1,206 @@
 %!TEX root = ../main.tex
 
 % =================================================
-% =================================================
+\textbf{Recalls on integration.}
+\begin{align*}
+&\int_a^b f'g\dx = \big[ fg \big]_a^b-\int_a^b fg'\dx \\
+&\int_\Omega \nabladot\fv\ g=\int_{\partial\Omega}\fv\!\cdot\!\nu\ g-\int_\Omega \fv\ \nabla g \\
+&\int_\Omega \underbracket[0.5pt]{\nabladot\left(\nabla u\right)}_{\Delta u}\,v=\int_{\partial\Omega}\underbracket[0.5pt]{\nabla u\!\cdot\!\nu\,}_{\nicefrac{\partial u}{\partial \nu}}\,v-\int_\Omega \nabla u\,\nabla v
+\end{align*}
 
-\section{\color{forestgreen(web)}Linear PDEs }
-
-% =================================================
-% =================================================
-
-% =================================================
-
-\subsection{\color{red}Homogeneous Dirichlet problem}
+\rule{0.31\textwidth}{0.2pt}
 
 % =================================================
+\textbf{Recalls on weak derivatives.}
+\begin{align*}
+&\int_\Omega \dfrac{\partial u}{\partial x_i}\,\varphi = \int_\Omega u\,\dfrac{\partial\varphi}{\partial x_i} \\ 
+&\int_\Omega (\nabladot \uv)\,\varphi = -\int_\Omega \uv\cdot\nabla\varphi \\
+&\int_\Omega \Delta \uv\ \varphi = -\int_\Omega \nabla\uv\cdot\nabla\varphi
+\end{align*}
+
+\rule{0.31\textwidth}{1pt}
+
+% =================================================
+% =================================================
+
+\vspace{-1em}
+
+\section{\texorpdfstring{\color{forestgreen(web)}Linear PDEs}{}}
+
+% =================================================
+% =================================================
+
+$n\geq 2$, $\Omega\subset\RR^n$ open bdd with \emph{smooth} boundary
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}Homogeneous Dirichlet problem}{}}
+
+% =================================================
+
+$\alpha\in\RR$, find $u:\Omega\to\RR$ st
+\begin{equation*}
+\begin{cases}
+    -\Delta u +\alpha u = f &\text{ in }\Omega\\
+    u=0 &\text{ on }\partial\Omega    
+\end{cases}
+\end{equation*}
+
+\textbf{Def (Classical sol).} $u\in\Cc^2(\Omega)\cap\Cc^0(\overline{\Omega})$
+
+\smallskip
+
+\textbf{Rmk:} $u$ classical sol $\Rightarrow$ $f\in\Cc^0(\Omega)$, conversely, $f\notin\Cc^0(\Omega)$ $\Rightarrow$ $u$ cannot be classical sol.
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Def (Weak sol).} $u\in H^1_0(\Omega)$ such that
+\begin{equation*}
+\int_{_\Omega}\!\!\!  \nabla u\,\nabla v +\alpha\!\!\int_{_\Omega}\!\!\!  uv ={}_{_{H^{\text{-}1}}}\!\!\sca{f,v}{}_{_{\!\!H^1_0}}\quad\forall\, v\in H^1_0(\Omega)
+\end{equation*}
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+Since $u\in H^1_0(\Omega)$ $\Leftrightarrow$ $u\big|_{\partial \Omega}=0$, classical $\Rightarrow$ weak, and weak + reg. $\Rightarrow$ classical
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Thm.} Let $\alpha\geq 0$, $f\in H^{\text{-}1}(\Omega)$. Then $\exists\,!$ weak sol $u\in H^1_0(\Omega)$. Moreover, there holds the \textbf{Dirichlet principle}, i.e. $u$ unique minimizer over $H^1_0\Omega)$ of 
+\begin{equation*}
+J(w)=\frac{1}{2}\int_{_\Omega}\!\!\!  \Big( \left| \nabla w \right|^2+\alpha\left| w \right|^2 \Big)-\sca{f,w}
+\end{equation*}
+
+\textbf{Rmk:} the least eigenvalue is 
+\begin{equation*}
+0<\lambda_1:=\inf_{H^1_0\setminus\{0\}} \frac{\norm{\nabla u}_2^2}{\norm{u}_2^2}=\frac{1}{C_\Omega^2}  
+\end{equation*}
+
+thus coercivity still holds for $\alpha>-\lambda_1$. For $\alpha\leq -\lambda_1$ we apply Fredholm's alternative (but no more Dirichlet principle) thx to $H^1\subset\subset L^2$.
+
+\rule{0.31\textwidth}{0.2pt}
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}Inhomogeneous Dirichlet problem}{}}
+
+% =================================================
+
+$\alpha\in\RR$, find $u:\Omega\to\RR$ st
+\begin{equation*}
+\begin{cases}
+    -\Delta u +\alpha u = f &\text{ in }\Omega\\
+    u=g &\text{ on }\partial\Omega    
+\end{cases}
+\end{equation*}
+
+\textbf{Def (Classical sol).} $u\in\Cc^2(\Omega)\cap\Cc^0(\overline{\Omega})$
+
+\smallskip
+
+\textbf{Rmk:} $u$ classical sol $\Rightarrow$ $f\in\Cc^0(\Omega)$, $g\in\Cc^0(\partial\Omega)$
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+$K:=\left\{ v\in H^1(\Omega);\ \gamma_{_0}v=g \right\}\equiv H^1_g(\Omega)$
+
+\smallskip
+
+\textbf{Def (Weak sol).} $u\in K$ such that
+\begin{equation*}
+\int_{_\Omega}\!\!\! \nabla u\,\nabla v +\alpha\!\!\int_{_\Omega}\!\!\! uv ={}_{_{\left[H^1\right]'}}\!\sca{f,v}{\!}_{_{H^1_0}}\quad\forall\, v\in H^1_0(\Omega)
+\end{equation*}
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+classical $\Rightarrow$ weak, and weak + reg. $\Rightarrow$ classical
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Thm.} Let $\alpha> -\lambda_1$, $f\in\left[ H^1(\Omega) \right]'$, $g\in H^{1/2}(\partial\Omega)$. Then $\exists\,!$ weak sol $u\in K$. Moreover, $u$ is the unique minimizer over $K$ of 
+\begin{equation*}
+J(w)=\frac{1}{2}\int_{_\Omega}\!\!\!  \Big( \left| \nabla w \right|^2+\alpha w^2 \Big)-\sca{f,w}
+\end{equation*}
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboards u.u
+
+\rule{0.31\textwidth}{0.2pt}
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}Inhomogeneous Neumann problem}{}}
+
+% =================================================
+
+$\alpha>0$, $f\in L^2(\Omega)$, $g\in H^{\text{-}1/2}(\partial\Omega)$,
+\begin{equation*}
+\begin{cases}
+    -\Delta u +\alpha u = f &\text{ in }\Omega\\
+    \dfrac{\partial u}{\partial\nu}=g &\text{ on }\partial\Omega    
+\end{cases}
+\end{equation*}
+
+\textbf{Def (Classical sol).} $u\in\Cc^2(\Omega)\cap\Cc^1(\overline{\Omega})$
+
+\smallskip
+
+\textbf{Rmk:} $u$ classical sol $\Rightarrow$ $f\in\Cc^0(\Omega)$, $g\in\Cc^0(\partial\Omega)$
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Def (Weak sol).} $u\in H^1(\Omega)$ such that
+\begin{equation*}
+\int_{_\Omega}\!\!\! \nabla u\,\nabla v +\alpha\!\!\int_{_\Omega}\!\!\! uv =\int_{_\Omega}\!\!\!fv+\sca{g,\gamma_{_0}v}\quad\forall\, v\in H^1
+\end{equation*}
+
+where $\sca{\cdot,\cdot}$ is between $H^{\text{-}1/2}$ and $H^{1/2}$.
+
+\smallskip
+
+\textbf{Rmk:} the weak form. is obtained by using the generalized GG formula, since $\nabla u \in \mathbf{E}$.
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+classical $\Rightarrow$ weak, and weak + reg. $\Rightarrow$ classical
+
+\rule{0.31\textwidth}{0.2pt}
+\smallskip
+
+\textbf{Thm.} Let $\alpha>0$ (least eigenv.), $f\in L^2(\Omega)$, $g\in H^{\text{-}1/2}(\partial\Omega)$. Then $\exists\,!$ weak sol $u\in H^1(\Omega)$. Moreover, $u$ is the unique minimizer over $H^1$ of 
+\begin{equation*}
+J(w)=\frac{1}{2}\int_{_\Omega}\!\!\!  \Big( \left| \nabla w \right|^2+\alpha w^2 \Big)-\int_\Omega\!\!\!fw-\sca{g,\gamma_{_0}w}
+\end{equation*}
+
+
+\rule{0.31\textwidth}{0.2pt}
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}Helmholtz-Weyl scomposition}{}}
+
+% =================================================
+
+Check FSI
+
+\rule{0.31\textwidth}{0.2pt}
+
+% =================================================
+
+\subsection{\texorpdfstring{\color{red}Stokes problem (stationary NS linearized)}{}}
+
+% =================================================
+ 
+Check FSI
+
+\rule{0.31\textwidth}{1pt}
+
+
+
+

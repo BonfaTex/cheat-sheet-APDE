@@ -1,0 +1,258 @@
+%!TEX root = ../main.tex
+
+% =================================================
+% =================================================
+
+\FSIsection{Stationary Quasilinear NS}
+
+% =================================================
+% =================================================
+
+Let us consider the following problem:
+\begin{subequations}
+    \label{Navier-problem}
+    \begin{align}[left=\empheqlbrace]
+    -\eta\Delta \bm u+ \left( \bm u\cdot\nabla \right) \bm u +\nabla p = \bm f &\qquad\text{ in }\Omega  \label{eq:np1} \\
+    \nabla\cdot \bm u=0 &\qquad\text{ in }\Omega \label{eq:np2} \\
+    \bm u=0 &\qquad\text{ on }\partial\Omega \label{eq:np3}
+    \end{align}
+\end{subequations}
+
+where the unknowns are the vector function $\bm u$ and the scalar function $p$. Compared to \eqref{eq:sp1}, Eq.~\eqref{eq:np1} has the additional vector
+\begin{equation}
+\label{eq:trilinear}
+\begin{gathered}
+\big[\left( \bm u\cdot\nabla \right) \bm u\big]_i \coloneq \sum_{j=1}^n \left( u_j\,\frac{\partial}{\partial x_j} \right) u_i \\
+\left\{ \text{mnemonic rule: } \left( \bm u\cdot\nabla \right) \bm u = \nabla\bm u\cdot \bm u \right\}  
+\end{gathered}
+\end{equation}
+
+hence the equation is a \emph{quasilinear} (nonlinear wrt $\bm u$ and $\nabla\bm u$) elliptic one.
+
+\smallskip
+
+\textbf{Rmk:} since there are odd derivatives in $\bm u$, surely there is no Dirichlet Principle. Moreover, if $\bm u$ is \emph{small}, then $\left( \bm u\cdot\nabla \right) \bm u$ is \emph{really small}, thus giving the Stokes Problem.
+
+\smallskip
+
+Component-wise we have
+\begin{equation*}
+-\eta \sum_{j=1}^n \frac{\partial^2 u_i}{\partial x^2_j} + \sum^{n}_{j=1} \frac{\partial u_i}{\partial x_j}\,u_j + \frac{\partial p}{\partial x_i} = f_i\qquad \forall\,i=1,\dots,n 
+\end{equation*}
+
+{\color{purple} Here we will understand the differences between $n=2,3,4$ and $n\geq 5$,} {\color{forestgreen(web)} and why an \emph{ancient} saying states "$\eta$: the larger the better".}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.3em}
+
+\FSIsubsection{Variational Formulation}
+
+Given $\bm f\in\Hv^{-1}$, we multiply Eq.~\eqref{eq:np1} by $\bm v \in \Vv$ and we integrate over $\Omega$:
+\begin{equation*}
+ \eta\int_\Omega \nabla \bm u : \nabla \bm v+\int_\Omega \left( \bm u\cdot\nabla \right) \bm u\ \bm v=\dualV{\bm f,\bm v}{\Hv}{-1} \qquad \forall\, \bm v\in\Vv
+\end{equation*}
+
+The duality pairing $\dualV{\cdot,\cdot}{\Hv}{-1}$ is well defined since $\Vv\subset\Hv_0^1\Longrightarrow\Hv^{-1}\subset \Vv'$, {\color{blue}we'll understand soon why we do not take the \emph{lowest} $\bm f$, i.e. $\bm f \in \Vv'$.}
+
+\smallskip
+
+What about the integral of the nonlinear term? By Sobolev Embedding Theorem we know that
+\begin{equation}
+\label{Sob-Emb}
+\bm u\in \Vv\Longrightarrow \bm u\in \Hv^1 \Longrightarrow \bm u\in \Lv^p\text{ for every }p\in \left\{
+\begin{aligned}
+&[1,\infty) &&\text{ if }n=2 \\
+&[1,6] &&\text{ if }n=3 \\
+&[1,4] &&\text{ if }n=4 \\
+\end{aligned} \right.
+\end{equation}
+
+In the worst case ($n=4$) by the \textit{4-2-4} Hölder's inequality we have
+\begin{equation*}
+\begin{gathered}
+\left| \int_\Omega \left( \bm u\cdot\nabla \right) \bm u\ \bm v \right| \leq \norm{\bm u}_4\,\norm{\nabla\bm u}_2\,\norm{\bm v}_4<\infty \\
+\left\{ \text{mnemonic rule: } \int_\Omega \big( \underbracket[0.5pt]{\bm u}_{\Lv^4}\cdot \underbracket[0.5pt]{\nabla \big) \bm u}_{\Lv^2}\ \underbracket[0.5pt]{\bm v }_{\Lv^4},\ \text{with }\frac{1}{4}+\frac{1}{2}+\frac{1}{4}=1  \right\}  
+\end{gathered}
+\end{equation*}
+
+hence the integral is well defined, i.e. the term is $\Lv^1$. {\color{purple} And we remark that such inequality does not hold for $n\geq 5$.}
+
+\smallskip
+
+Moreover, if we define the \emph{trilinear form}
+\begin{align*}
+b:\Vv\times \Vv \times \Vv &\to \RR \\
+(\bm u, \bm v, \bm w) &\mapsto b (\bm u, \bm v, \bm w) = \textstyle\int_{_\Omega} \left( \bm u\cdot\nabla \right) \bm v\ \bm w
+\end{align*}
+
+then we can rewrite the variational formulation and give the defintion of \textbf{weak formulation}:
+\begin{equation*}
+\begin{gathered}
+\big(\forall\,\bm f\in\Hv^{\text{-}1}\big)\text{ Find }\bm u\in \Vv\text{ :} \\ 
+\eta\int_\Omega\!\! \nabla \bm u\! :\! \nabla \bm v+b(\bm u,\bm u,\bm v)=\dualV{\bm f,\bm v}{\Hv}{-1} \qquad \forall\, \bm v\in\Vv    
+\end{gathered}
+\tag{WF2}
+\end{equation*}
+
+\textbf{Rmk:} one can choose to keep the pressure inside the wf (losing symmetry) by testing with $\bm v \in \Hv^1_0$. Looking at the integrations by parts we did in the Stokes problem, (WF2) slightly changes into
+\begin{equation*}
+\begin{gathered}
+\big(\forall\,\bm f\in\Hv^{\text{-}1}\big)\text{ Find }\bm u\in \Vv\text{ :} \\ 
+\eta\int_\Omega\!\! \nabla \bm u\! :\! \nabla \bm v+b(\bm u,\bm u,\bm v)-\int_\Omega \nabla\cdot \bm v\ p=\dualV{\bm f,\bm v}{\Hv}{-1} \qquad \forall\, \bm v\in\Hv^1_0    
+\end{gathered}
+\end{equation*}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.5em}
+
+Now let $\bm u$ be a solution of (WF2). By undoing the integration by parts over the laplacian we obtain
+\begin{equation}
+\label{eq:dual-stop}
+\dualV{-\eta\Delta\bm u+ \left( \bm u\cdot\nabla \right)\bm u-\bm f,v}{\Hv}{-1}=0\qquad\forall\, \bm v\in\Vv
+\end{equation}
+
+Don't be scared, this is perfectly fine: $\Delta\bm u\in\Hv^{-1}$ by the (weak) definition of the laplacian, while $\left( \bm u\cdot\nabla \right)\bm u$ in an element of $\Hv^{-1}$ because of Sobolev Embedding (worst case $n=4$):
+\begin{equation*}
+\big( \underbracket[0.5pt]{\bm u}_{\Lv^4}\cdot \underbracket[0.5pt]{\nabla \big) \bm u}_{\Lv^2} \in \Lv^{4/3}\qquad\text{and}\qquad \Hv_0^1\subset\Hv^1\subset \Lv^4 \Longrightarrow \Lv^{4/3}\subset H^{-1}
+\end{equation*}
+
+{\color{blue}(we remark again that this could work in $\Vv'$ too)}
+
+\smallskip
+
+\textbf{Thm.} Take $\bm q\in\Hv^{\text{-}1}$, then $\sca{\bm q,\bm v}=0\ \forall\,\bm v\in\Vv$ $\Longleftrightarrow$ $\exists\,p\in L^2$ s.t. $\nabla p=\bm q$.
+
+\smallskip
+
+By applying this to Eq.~\eqref{eq:dual-stop}, and using the elliptic regularity, we say that
+\begin{gather*}
+\textit{If }\bm f\in\Hv^{\text{-}1} \textit{ and } \bm u \textit{ solves } \text{(WF2)} \textit{, then } \bm u\in \mathbf{V}\cap\Hv^2 \textit{ and } \\
+\exists\, p\in L^2\!/\RR \textit{ satisfying } \eqref{eq:np1}+\eqref{eq:np2}\textit{ in dstributional sense} \\
+\textit{and } \eqref{eq:np3} \textit{ in the sense of traces}
+\end{gather*}
+
+{\color{blue}\textbf{Rmk:} here we understand why $\bm f\in \Vv'$ is not a good choice: the above-mentioned theorem hasn't got a counterpart for $\Vv'$, thus we are not able to recover the pressure in the formulation!}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.5em}
+
+\newcolumn
+
+Here we assume $\bm f\in\Lv^2$, then (WF2) still holds:
+\begin{equation*}
+\begin{gathered}
+\big(\forall\,\bm f\in\Lv^{2}\big)\text{ Find }\bm u\in \Vv\text{ :} \\ 
+\eta\int_\Omega\!\! \nabla \bm u\! :\! \nabla \bm v+b(\bm u,\bm u,\bm v)=\int_\Omega\bm f\ \bm v \qquad \forall\, \bm v\in\Vv    
+\end{gathered}
+\tag{WF3}
+\end{equation*}
+
+Therefore, Eq.~\eqref{eq:dual-stop} becomes
+\begin{equation*}
+\int_\Omega \left( -\eta\Delta\bm u+ \left( \bm u\cdot\nabla \right) \bm u - \bm f \right) v =0 \qquad\forall\,\bm v\in \Vv \overset{\delta}{\subset} \Gv_1
+\end{equation*}
+
+and we can state that
+\begin{gather*}
+\textit{If }\bm f\in\Lv^2 \textit{ and } \bm u \textit{ solves } \text{(WF3)} \textit{, then } \bm u\in \mathbf{V}\cap\Hv^2 \textit{ and } \\
+\exists\, p\in H^1\!/\RR \textit{ satisfying } \eqref{eq:np1}+\eqref{eq:np2}\textit{ a.e. and } \eqref{eq:np3} \textit{ in the sense of traces}
+\end{gather*}
+
+which works as definition of \textbf{strong solution} (+ more reg. $\Rightarrow$ \textbf{classical}).
+
+\medskip
+
+It's time to properly study the black box called \emph{elliptic regularity}:
+
+\textbf{Thm (Regularity of weak solutions).} Let $n=2,3,4$ and $\bm f\in\Lv^2$. Then, any solution $\bm u\in\Vv$ of (WF3) belongs to $\Hv^2$.
+
+\textbf{\color{lavender(floral)}Proof.} {\color{purple} Here you understand another reason why the dimension $n$ is not \emph{just a number}. } See whiteboard \texttt{FSI-6} u.u
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.3em}
+
+\FSIsubsection{Existence of a Solution}
+
+Until now we assumed the existence of a solution $\bm u$ of (WF2) or (WF3). But things are not so simple: we cannot use LM \Sadey. Before finding a solution via \textbf{Galerkin approximation}, we need further properties about the trilinear form $b$.
+
+\smallskip
+
+\textbf{Thm.} {\color{purple} For $n=2,3,4$} the trilinear form $b:\Vv^3\to\RR$ satisfies the followings: \\
+$-$ it is continuous over $\Vv^3$ \\
+$-$ $b(\bm u,\bm v,\bm v)=0$ and $b(\bm u,\bm v,\bm w)=-b(\bm u,\bm w,\bm v)$ for every $\bm u,\bm v,\bm w \in \Vv$ \\
+$-$ if $\bm u_m \overset{\scriptscriptstyle\Vv}{\rightharpoonup}\bm u$ and $\bm v_m \overset{\scriptscriptstyle\Vv}{\rightarrow}\bm v$ then $b(\bm u_m, \bm u_m, \bm v_m)\rightarrow b(\bm u,\bm u,\bm v)$ 
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboard \texttt{FSI-7} u.u
+
+\smallskip
+
+\textbf{Thm (Existence).} Let $\Omega\subset\RR^{\color{purple}n=2,3,4}$ open bdd (connected) with smooth boundary. If $\eta>0$ and $\bm f \in \Hv^{-1}(\Omega)$, then $\exists\,\bm u$ solution of (WF2).
+
+\textbf{\color{lavender(floral)}Proof.} It's a very istructive proof, based on Galerkin approximation and Brouwer fixed-point theorem. See whiteboard \texttt{FSI-8} u.u
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.3em}
+
+\FSIsubsection{Uniqueness of the Solution}
+
+Obviously, set $n=2,3,4$.
+
+\textbf{Thm (A priori bound).} Any $\bm u$ weak sol. satisfies $\norm{\nabla\bm u}_{\Lv^2}\!\leq\! \frac{\norm{\bm f}_{\Hv^{\text{-}1}}}{\eta}$.
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboard \texttt{FSI-9} u.u
+
+\smallskip
+
+In view of Sobolew Embedding \eqref{Sob-Emb}, $\Hv_0^1\subset\Lv^4$, thus we can define
+\begin{equation*}
+\mathrm{S}_{\Omega}=\min_{\scriptscriptstyle\bm w \in \Hv_0^1\setminus \{\bm 0\} } \frac{\norm{\nabla\bm w}_2^2}{\norm{\bm w}_4^2} 
+\end{equation*} 
+
+so that $\mathrm{S}_{\Omega}>0$ and 
+\begin{equation}
+\label{var-ineq-S}
+\underbracket[0pt]{\norm{\bm w}_4\leq \frac{1}{\sqrt{\mathrm{S}_{\Omega}}}\, \norm{\nabla \bm w}_2}_{\hookrightarrow\textit{ Poincaré!}}\qquad \forall\,\bm w \in \Hv^1_0
+\end{equation}
+
+Finally we can state the main result:
+
+\smallskip
+
+\textbf{Thm (Uniqueness).} If $\eta^2>\dfrac{\norm{\bm f}_{\Hv^{\text{-}1}}}{\mathrm{S}_{\Omega}}$, then $\exists\,!$ weak solution.
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Proof.} Assume by contradiction the existence of two different weak sol, subtract the two formulations, test with the difference, and use \eqref{var-ineq-S}. See whiteboard \texttt{FSI-10} u.u
+
+\smallskip
+
+{\color{forestgreen(web)} \textbf{Rmk:} the condition on $\eta^2$ explain why we said $\eta$ has to be large enough. In addiction, if $\eta$ is \emph{small} and $\norm{\bm f}_{\Hv^{\text{-}1}}$ \emph{large}, the fluid is in turbolence regime, and we don't know a damn thing about it.}
+
+\smallskip
+
+Moreover, if the hypothesis that $\eta$ is \emph{small} fails, nothing can be said in general. Some particular cases when we can state \emph{something} are: \\
+$\bullet$ the Taylor-Couette problem, where $\bm f=\bm 0$, and we can prove the existence of two solutions; \\
+$\bullet$ the problem studied by Foias-Temam, where $\Omega$ has finitely many connected components, $n=2$ or $n=3$, and we can prove the existence of a finite number of solutions (there are not \emph{too many} solutions).
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.3em}
+
+\FSIsubsection{Domain with multiply connected boundaries}
+
+We briefly mention that in the more general framework of $n=2,3$, 
+\begin{equation*}
+\Omega=\Omega_0\setminus \mathrm{U}_{\scriptscriptstyle j=1}^{^{\scriptscriptstyle M}} \overline{\Omega}_j\ (M\geq 1),\qquad \Omega_i\cap\Omega_j=\varnothing\ \forall\, i\neq j,
+\end{equation*}
+
+the Navier-Stokes Equations \eqref{eq:np1}+\eqref{eq:np2} under the boundary condition $\bm u=\bm v_*$ on $\partial \Omega$ with $\bm v_*\in \Hv^{-1/2}$ such that
+\vspace{-0.5em}
+\begin{equation*}
+\sca{\gamma_{_\nu}\bm v_*,1}=\int_{\partial\Omega}\bm v_*\cdot\nu=\sum_{j=0}^M \left( \int_{\partial\Omega_j} \bm v_*\cdot\nu \right)=\sum_{j=0}^M \phi_j = 0,
+\end{equation*}
+
+have been solved using an extension of the Brouwer fixed-point thm called Leray-Schauder principle, \textbf{but} under the more strict requirement on the fluxes: $\phi_j=0$ for every $j=1,\dots,M$ (not only the sum).
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\newpage
+
+
+
+
+
+
+
