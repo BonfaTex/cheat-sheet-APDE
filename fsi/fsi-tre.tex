@@ -3,7 +3,405 @@
 % =================================================
 % =================================================
 
-\FSIsection{Evolutionary NS}
+\FSIsection{Abstract Equations}
 
 % =================================================
 % =================================================
+
+Let $\Xv$ be a Banach space (complete normed vector space), we write vectors in $\Xv$ in bold: $\bm x \in \Xv$.
+
+\medskip
+
+\FSIsubsection{The Bochner Integral}
+
+Let $T>0$, and consider functions defined a.e. $\bm u:(0,T)\to \Xv$, in other words for a.e. $t\in(0,T)$ the function $\bm u=\bm u(t)\in \Xv$. 
+
+\smallskip
+
+Example: take $\bm f = \bm f(r,s,t)\in \Cc^0(\RR^3)$ and define $\bm u(t):=\bm f(r,s,t)\in \Cc^0(\RR)$ for all $(r,s)\in\RR^2$ ($\sim$ you freeze $r$ and $s$).
+
+\smallskip
+
+We define the following spaces:
+\begin{itemize}
+    \item[$\triangleright$] $L^p(0,T;\Xv)\coloneq \left\{ \bm u:(0,T)\to \Xv;\ \displaystyle\int_0^T \norm{\bm u(t)}_{\Xv}^{p} \dt<\infty \right\}$ \\
+    $L^\infty(0,T;\Xv)\coloneq \left\{ \bm u:(0,T)\to \Xv;\ \displaystyle\esssup_{t\in[0,T]} \norm{\bm u(t)}_{\Xv}<\infty \right\}$  
+
+    They are Banach wrt the norm
+    \begin{equation*}
+    \norm{\bm u}_{L^p(0,T;\Xv)}\coloneq
+    \begin{cases}
+    \displaystyle \left( \int_0^T \norm{\bm u(t)}_\Xv^p \dt \right)^{1/p} & p\in [1,\infty) \\
+    \displaystyle\esssup_{t\in [0,T]} \norm{\bm u(t)}_\Xv &p=\infty
+    \end{cases}
+    \end{equation*}
+
+    \item[$\triangleright$] If $\Hv$ is Hilbert, then $L^2(0,T;\Hv)$ is Hilbert endowed with
+    \begin{equation*}
+    (\bm u,\bm v)_{L^2(0,T;\Hv)}=\int_0^T (\bm u(t), \bm v(t))_\Hv \dt
+    \end{equation*}
+
+    \vspace{-1em}
+
+    \item[$\triangleright$] We say that
+    \begin{align*}
+    \bm u \in \Cc^0([0,T];\Xv) &\ \Longleftrightarrow \ \forall \text{ seq. }t_n\to t_0\ \Rightarrow\ \bm u(t_n)\overset{\Xv}{\to} \bm u(t_0) \\
+    &\ \Longleftrightarrow \ \lim_{t\to t_0} \norm{\bm u(t)-\bm u(t_0)}_\Xv=0\ \ \forall\ t_0
+    \end{align*}
+
+    \vspace{-0.5em}
+
+    The space $ \Cc^0([0,T];\Xv)$ is Banach wrt the $L^\infty(0,T;\Xv)$ norm.
+
+    \smallskip
+
+    \textbf{Rmk:} by writing $([0,T];\Xv)$ instead of $(0,T;\Xv)$ we underline that this def holds for every $t$, while for $L^p$ spaces we had for a.e. $t$.
+
+    \item[$\triangleright$] We compute $\forall\ t$
+    \begin{equation*}
+    \lim_{h\to 0} \frac{\bm u(t+h)-\bm u(t)}{h}\eqcolon \bm u'(t) \in \Xv
+    \end{equation*}
+    and if $\bm u'\in \Cc^0([0,T];\Xv)$ then we say that $\bm u\in  \Cc^1([0,T];\Xv)$.
+
+    \item[$\triangleright$] Let $\Hv$ Hilbert, we define
+    \begin{align*}
+     \Cc^0_{\mathrm w}([0,T];\Hv)\coloneq \Big\{ & \bm u\in L^\infty (0,T;\Hv);\ \forall\, t_0\in[0,T]  \\
+    & \displaystyle \lim_{t\to t_0} \left( \bm u(t)-\bm u(t_0),\bm v \right)_\Hv=0\ \ \forall\, \bm v \in \Hv \Big\}
+    \end{align*}    
+\end{itemize}
+
+\vspace{-0.7em}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+Now we extent the Lebesgue integral for functions $\bm u:(0,T)\to\Xv$ having values in a Banach space. 
+\begin{enumerate}
+    \item \textbf{Def (Simple function).} A function $\bm s:(0,T)\to\Xv$ is simple if $\exists$ a finite number $n$ of measurable subset $A_1,\dots,A_n\in (0,T)$ and of vectors $\bm x_1,\dots,\bm x_n\in \Xv$ such that $\bm s(t)=\sum_{k=1}^n \Ind_{A_k}\!(t)\,\bm x_k$.
+
+    \item If $\bm s$ is simple, then it's natural to define
+    \begin{equation*}
+    \int_0^T \bm s(t)\dt\coloneq \sum_{k=1}^n \left| A_k \right| \bm x_k\in \Xv
+    \end{equation*}
+
+    \vspace{-0.7em}
+
+    \item \textbf{Prp ($\bm L^{\bm 1}\!$ characterization via simple approx).} $\bm u\in L^1(0,T;\Xv)$ $\Leftrightarrow$ $\exists\ \{\bm s_m\}$ of simple functions st $\bm s_m(t)\overset{\Xv}{\to}\bm u(t)$ for a.e. $t\in(0,T)$ and 
+    \begin{equation*}
+    \lim_{m\to\infty} \norm{\bm s_m-\bm u}_{L^1(0,T;\Xv)}=\lim_{m\to\infty} \underbracket[0.5pt]{\int_0^T \norm{\bm s_m(t)-\bm u(t)}_\Xv\dt}_{\text{\color{olive}{int. of scalar}}}= 0
+    \end{equation*}
+
+    \vspace{-0.5em}
+
+    \item Given $\bm u\in L^1(0,T;\Xv)$ and a sequence $\{\bm s_m\}$ of simple function as in the proposition above, it's reasonable to define
+    \begin{equation*}
+    \underbracket[0.5pt]{\int_0^T \bm u(t)\dt}_{\text{\color{olive}{int. of vector}}} \coloneq \lim_{m\to\infty} \int_0^T \bm s_m(t)\dt \in \Xv
+    \end{equation*}
+
+    \vspace{-0.5em}
+
+    It's easy to prove that this limit exists and it does not depend on the approximating sequence you choose, but only on $\bm u$.
+
+    \smallskip
+
+    {\color{olive}\textbf{Rmk:} we are somehow binding Bochner integrals (which are vector-valued) and Lebesgue integrals (which are scalar-valued).}
+\end{enumerate}
+
+\textbf{Thm (Bochner).} Consider the functional $L:\Xv\to \RR$, i.e. $L\in \Xv'$. If $\bm u \in L^1(0,T;\Xv)$ then the scalar-valued function
+\vspace{-0.5em}
+\begin{align*}
+\Psi:(0,T)&\to\RR \\
+t &\mapsto \Psi(t)\coloneq \sca{L,\bm u(t)}
+\end{align*}
+
+\vspace{-0.5em}
+
+belongs to $L^1(0,T)$ and 
+\vspace{-0.5em}
+\begin{equation*}
+\int_0^T \sca{L,\bm u(t)} \dt = \langle L,\underbracket[0,5pt]{\int_0^T \bm u(t)\dt}_{\in\Xv} \rangle \tag{$\sim$ \emph{linearity of integral}}
+\end{equation*}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\newcolumn
+
+We need to extent also the concept of distribution, from the usual $\Lambda\in\Dc'(A)$, i.e. $\Lambda:\Dc(I)\to\RR$, to having values in a Banach space. 
+
+\smallskip
+
+\textbf{Def:} we define $\Dc'(0,T;\Xv)$ as the space of linear and continuous operators $\bm \Lambda:\Dc(0,T)\to\Xv$. In other words
+\begin{equation*}
+\bm\Lambda\in\Dc'(0,T;\Xv)\ \Longleftrightarrow\ \forall\text{ seq. }\varphi_k\overset{\Dc}{\to}\varphi\ \Rightarrow\ \sca{\bm\Lambda,\varphi_k}\overset{\Xv}{\to}\sca{\bm\Lambda,\varphi}
+\end{equation*}
+
+As for standard $L^1_{\text{loc}}$ functions, for every $\bm u \in L^1(0,T;\Xv)$ it is well-defined the distribution $\bm\Lambda_{\bm u}\in\Dc'(0,T;\Xv)$ given by
+\begin{equation*}
+\sca{\bm\Lambda_{\bm u},\varphi}\coloneq \int_0^T \bm u(t)\, \varphi(t) \dt \qquad \forall\, \varphi \in \Dc(0,T)
+\end{equation*}
+
+\textbf{Def.} Let $\bm\Lambda\in\Dc'(0,T;\Xv)$, we define the distribution $\bm\Lambda'\in\Dc'(0,T;\Xv)$ as
+\begin{equation*}
+\sca{\bm \Lambda',\varphi}\coloneq -\sca{\bm\Lambda,\varphi'}\qquad \forall\,\varphi\in\Dc(0,T)
+\end{equation*}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+Let $\Vv\subset\Hv\subset\Vv'$ be an Hilbert triplet: $\Vv$ and $\Hv$ are Hilbert spaces, $\Vv$ is dense in $\Hv$ and the immersion is continuous, $\Hv'\equiv\Hv$ by Riesz, and the inclusion in $\Vv'$ is in the sense that for every $\bm u \in\Hv$ we associate a functional in $\Vv'$. You may think $\Hv_0^1\subset\Lv^2\subset\Hv^{\text{-}1}$.
+
+\smallskip
+
+\textbf{Rmk:} let $\bm \Lambda \in\Vv'$, then it is well-def the duality pairing $\dualVv{\bm\Lambda,\bm v}$ for every $\bm v \in \Vv$. But if it happens that $\bm \Lambda \in\Hv$, then by Riesz identification $\bm \Lambda \in\Hv'$ and the duality $\dualHv{\bm\Lambda,\bm v}$ becomes the scalar product $\left( \bm\Lambda,\bm v \right)_{\Hv}$.
+
+\smallskip
+
+\textbf{Thm (\emph{Kodotama}).} \leavevmode
+\begin{itemize}
+    \item[$\triangleright$] if $\bm u \in L^2(0,T;\Vv)$ and $\bm u'\in L^2(0,T;\Vv)$ then 
+    \begin{itemize}
+        \item $\bm u\in\Cc^0([0,T];\Vv)$
+
+        \item $\left( \bm u(t),\bm v \right)_\Hv$ admits weak derivative $\forall\, \bm v \in\Vv,\ \forall\,t\in[0,T]$, i.e.
+        \begin{equation*}
+        \int_0^T \frac{\de}{\de t} \left( \bm u(t),\bm v \right)_\Hv\varphi(t)\dt = -\int_0^T \left( \bm u(t),\bm v \right)_\Hv \varphi'(t)\dt
+        \end{equation*}
+        $\forall\, \varphi\in\Dc(0,T)$
+
+        \item $\displaystyle \frac{\de}{\de t} \left( \bm u(t),\bm v \right)_\Hv =\left( \bm u'(t),\bm v \right)_\Hv$ $\ \forall\, \bm v \in\Vv\ $ in $\Dc'(0,T)$
+    \end{itemize}
+
+    \item[$\triangleright$] if $\bm u \in L^2(0,T;\Vv)$ and $\bm u'\in L^2(0,T;\Vv')$ then 
+    \begin{itemize}
+        \item $\bm u\in\Cc^0([0,T];\Hv)$
+
+        \item $\left( \bm u(t),\bm v \right)_\Hv$ admits weak derivative $\forall\, \bm v \in\Vv,\ \forall\,t\in[0,T]$, and $\norm{\bm u(t)}_\Hv^2$ admits weak derivative $\forall\,t\in[0,T]$
+
+        \item $\displaystyle \frac{\de}{\de t} \left( \bm u(t),\bm v \right)_\Hv =\dualVv{ \bm u'(t),\bm v }$ $\ \forall\, \bm v \in\Vv\ $ in $\Dc'(0,T)$, and \\
+        \vspace{0.5em}
+        $\displaystyle \frac{\de}{\de t} \norm{\bm u(t)}_\Hv^2 =2\ \dualVv{ \bm u'(t),\bm u(t) }\ $ in $\Dc'(0,T)$
+    \end{itemize}
+\end{itemize}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\FSIsubsection{Parabolic abstract problem}
+
+Let $\Vv\subset\Hv\subset\Vv'$ be an Hilbert triplet and $a(\cdot,\cdot)$ be a bilinear symmetric coercive form over $\Vv\times\Vv$. We want to solve the following problem:
+\begin{equation*}
+\begin{gathered}
+\big(\,\forall\,T>0,\ \bm f\in L^2(0,T;\Vv'),\ \bm u_0\in\Hv \big)\\
+\text{ Find }\bm u\in L^2(0,T;\Vv)\cap\Cc^0([0,T];\Hv) \text{ such that} \\ 
+\begin{cases}
+\langle \bm u'(t),\bm v \rangle + a(\bm u(t),\bm v)= \langle \bm f(t),\bm v \rangle &\forall\, \bm v\in\Vv\ \text{ in }\Dc'[0,T) \\
+\bm u(0)=\bm u_0
+\end{cases}   
+\end{gathered}
+\tag{WF4}
+\end{equation*}
+
+\textbf{Thm.} $\exists\,!$ sol. $\bm u$ to (WF4), which moreover satisfies $\bm u'\in L^2(0,T;\Vv')$.
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Proof.} You have to go through 5 steps: Galerkin approximation, uniform bounds, limit, extra regularity, uniqueness. See whiteboard \texttt{FSI-11} u.u
+
+\smallskip
+
+\underline{ex}: Heat equation $\bm u_t-\Delta\bm u=\bm f$ under Dirichlet/Neumann condition
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\FSIsubsection{Hyperbolic abstract problem}
+
+The functional setting is as above. We want to solve:
+\begin{equation*}
+\begin{gathered}
+\big(\,\forall\,T>0,\ \bm f\in L^2(0,T;\Hv),\ \bm u_0\in\Vv,\ \bm u_1\in\Hv \big)\\
+\text{ Find }\bm u\in \Cc^0_{\mathrm{w}}([0,T];\Vv) \text{ s.t.} \\
+\bm u'\in \Cc^0_{\mathrm{w}}([0,T];\Hv),\ \bm u''\in L^2(0,T;\Vv'), \text{ and} \\
+\begin{cases}
+\langle \bm u''(t),\bm v \rangle + \left(\bm u(t),\bm v\right)_\Vv= \left( \bm f(t),\bm v \right)_\Hv &\forall\, \bm v\in\Vv\ \text{ in }\Dc'[0,T) \\
+\bm u(0)=\bm u_0 \\
+\bm u'(0)=\bm u_1
+\end{cases}   
+\end{gathered}
+\tag{WF5}
+\end{equation*}
+
+\textbf{Thm.} $\exists\,!$ sol. $\bm u$ to (WF5).
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Proof.} You have to go through the same 5 steps as above, but in a slightly different way (for example, you need different test functions in order to prove uniqueness). I'm not sure I will do that, but let's reserve whiteboard \texttt{FSI-12} u.u
+
+\smallskip
+
+\underline{ex}: Wave equation $\bm u_{tt}-\Delta\bm u=\bm f$
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\newpage
+
+\FSIsection{The Evolution Navier-Stokes Equations}
+
+Let $2\leq n \leq 4$, $\Omega\subset\RR^n$ open bdd with smooth ($\Cc^2$) boundary, $T>0$, $\eta>0$, and consider the following problem:
+\begin{subequations}
+    \label{Navier-Stokes-problem}
+    \begin{align}[left=\empheqlbrace]
+    \bm u_t-\eta\Delta \bm u+ \left( \bm u\cdot\nabla \right) \bm u +\nabla p = \bm f &\qquad\text{ in }\Omega\times(0,T)  \label{eq:nsp1} \\
+    \nabla\cdot \bm u=0 &\qquad\text{ in }\Omega\times(0,T) \label{eq:nsp2} \\
+    \bm u=0 &\qquad\text{ on }\partial\Omega\times(0,T) \label{eq:nsp3} \\
+    \bm u(x,0)=\bm u_0(x) &\qquad\text{ in }\Omega\label{eq:nsp4}
+    \end{align}
+\end{subequations}
+
+where the unknowns are the vector velocity $\bm u:\Omega\times[0,T]\to\RR^n$ and the scalar pressure $p:\Omega\times[0,T]\to\RR$.
+
+\smallskip
+
+From this system of equations, you can derive the Stokes problem~\eqref{Stokes-problem}, the stationary NS~\eqref{Navier-problem}, or even the abstract heat equation (the only difference is the quasilinear term since the pressure will disappear in the WF).
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\FSIsubsection{Variational Formulation}
+
+Let us consider the Hilbert triplet $\Vv\subset\Hv\subset\Vv'$ where $\Vv$ is the usual space of $\Hv_0^1$ div-free functions and $\Hv$ is the space $\Gv_1$. Hence, the scalar product in $\Hv$ is simply the $\Lv^2$ one. I recall that the duality $\dualVv{\cdot,\cdot}$ when the dual term is in $\Hv$ becomes the scalar product $(\cdot,\cdot)_\Hv$ by Riesz. Notice that this argument cannot be applied when the dual term is in $\Vv$, and so leading to $(\cdot,\cdot)_\Vv$, because we do not have Riesz there.
+
+\smallskip
+
+Then the weak formulation is:
+\begin{equation*}
+\begin{gathered}
+\big(\,\forall\,T>0,\ \bm f\in L^2(0,T;\Vv'),\ \bm u_0\in\Hv\big)\text{ Find }\bm u\in L^2(0,T;\Vv) \text{ :} \\
+\begin{cases}
+\langle \bm u'(t),\bm v \rangle +\eta \left(\bm u(t),\bm v\right)_\Vv+b(\bm u(t),\bm u(t),\bm v)= \langle \bm f(t),\bm v \rangle \\
+\qquad\qquad\qquad \forall\, \bm v\in\Vv\ \text{ in }\Dc'[0,T) \\
+\bm u(0)=\bm u_0
+\end{cases}   
+\end{gathered}
+\tag{WF6}
+\end{equation*}
+
+Let's exploit what "in $\Dc'[0,T)$" means. We first focus on the first term, so take $\varphi \in \Dc[0,T)$ and an integration by parts yield
+\begin{align*}
+\int_0^T \langle\bm u'(t),\bm v\rangle\,\varphi(t)\dt\overset{\text{weak der.}}{=}&-\int_0^T \langle\bm u(t),\bm v\rangle\,\varphi'(t)\dt\ +\\
+&+ \langle\bm u(T),\bm v\rangle\underbracket[0.5pt]{\varphi(T)}_{=0}-\langle\underbracket[0.5pt]{\bm u(0)}_{=\bm u_0},\bm v\rangle\underbracket[0.5pt]{\varphi(0)}_{\neq 0} \\
+\overset{\text{Riesz}}{=}& - \int_0^T \left( \bm u(t),\bm v \right)_\Hv\, \varphi'(t)\dt - \left( \bm u_0,\bm v \right)_\Hv\,\varphi(0)
+\end{align*}
+$\forall\, \bm v \in \Vv$, $\forall\,\varphi\in\Dc[0,T)$. Now we deal with the nonlinear term
+\begin{equation*}
+\int_0^T b(\bm u(t),\bm u(t),\bm v)\,\varphi(t)\dt\qquad \forall\, \bm v \in \Vv,\ \forall\,\varphi\in\Dc[0,T)
+\end{equation*}
+
+We set $B=B(\bm u(t))\in\Vv'$ the functional implicitely defined by 
+\begin{equation*}
+\dualVv{B(\bm u(t)),\bm v}=b(\bm u(t),\bm u(t),\bm v)\qquad \forall\, \bm v\in \Vv
+\end{equation*}
+for a.e. $t\in(0,T)$. There holds:
+\smallskip
+
+\textbf{Prop.} If $\bm u\in L^2(0,T;\Vv)$ then $B\in L^1(0,T;\Vv')$.
+
+\smallskip
+
+Hence, (WF6) gives
+\begin{gather*}
+- \int_0^T \left( \bm u(t),\bm v \right)_\Hv\, \varphi'(t)\dt - \left( \bm u_0,\bm v \right)_\Hv\,\varphi(0)+\eta \int_0^T \left( \bm u(t),\bm v \right)_\Vv\,\varphi(t)\dt\ + \\
++\int_0^T \langle B,\bm v \rangle\,\varphi(t)\dt=\int_0^T \langle \bm f(t),\bm v \rangle\,\varphi(t)\dt\qquad \forall\, \bm v \in \Vv,\ \forall\,\varphi\in\Dc[0,T)
+\end{gather*}
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\FSIsubsection{Existence of a Solution}
+
+\textbf{Thm.} $\exists$ sol. $\bm u$ to (WF6), which moreover satisfies $\bm u\in\Cc^0_{\mathrm{w}}([0,T];\Hv)$ and $\bm u'\in L^1(0,T;\Vv')$.
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Proof.} Galerkin-type proof made by 4 steps (the uniqueness is missing). See whiteboard \texttt{FSI-13} u.u
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\FSIsubsection{Uniqueness of the Solution}
+
+Usually we suppose $\exists\ \bm u_1,\ \bm u_2$ weak solutions, we subtract the two formulations and then we use $\bm u\coloneq \bm u_1-\bm u_2$ as test function. $\boxed{\text{But}}$  when we subtract formulations it is not clear if the nonlinear terms cancel out; secondly, $B\in L^1(0,T;\Vv')$ thus we cannot test with $\bm u(t)\in L^2(0,T;\Vv)$.
+
+\smallskip
+
+{\color{purple} We know how to solve this matter only in $n=2$ and here we're going to explain why. So buckle up.}
+
+\smallskip
+
+\textbf{Thm (Gagliardo-Niremberg).} In our frameowork there hold:
+\begin{align}
+n=2\qquad\norm{\bm v}_4 &\leq 2^{\frac{1}{4}}\norm{\bm v}_2^{\frac{1}{2}}\norm{\nabla \bm v}_2^{\frac{1}{2}}\qquad \forall\, \bm v \in \Hv_0^1  \label{eq:GN2} \\
+n=3\qquad\norm{\bm v}_4 &\leq 2^{\frac{1}{2}}\norm{\bm v}_2^{\frac{1}{4}}\norm{\nabla \bm v}_2^{\frac{3}{4}}\qquad \forall\, \bm v \in \Hv_0^1  \label{eq:GN3}
+\end{align}
+
+\textbf{Rmk:} these ineq. are in the middle of
+\begin{align*}
+\norm{\bm v}_4 &\leq C\, \norm{\bm v}_2^{1}\norm{\nabla \bm v}_2^{0}\qquad \forall\, \bm v \in \Hv_0^1\qquad \text{which is impossible} \\
+\norm{\bm v}_4 &\leq C\,\norm{\bm v}_2^{0}\norm{\nabla \bm v}_2^{1}\qquad \forall\, \bm v \in \Hv_0^1\qquad \text{which is Sobolev ineq.}
+\end{align*}
+
+\textbf{Rmk:} in 2020 Gazzola-Sperone improved \eqref{eq:GN2} to
+\begin{equation*}
+n=2\qquad\norm{\bm v}_4 \leq \left(\textstyle\frac{2}{3\pi}\right)^{\frac{1}{4}}\norm{\bm v}_2^{\frac{1}{2}}\norm{\nabla \bm v}_2^{\frac{1}{2}}\qquad \forall\, \bm v \in \Hv_0^1
+\end{equation*}
+
+\textbf{Rmk:} since in $n=4$ the critical exp. is $p^*=4$ the GN ineq. is exactly the Sobolev ineq. so nothing new.
+
+\newcolumn
+
+\textbf{Lemma 1.} $n=2$, $\bm u,\ \bm v,\ \bm w \in \Vv$, then
+\begin{equation*}
+\left| b(\bm u,\bm v,\bm w) \right|\leq C\,\norm{ \bm u}_2^{\frac{1}{2}} \norm{\nabla \bm u}_2^{\frac{1}{2}} \norm{\nabla \bm v}_2^{1} \norm{ \bm w}_2^{\frac{1}{2}} \norm{\nabla \bm w}_2^{\frac{1}{2}}
+\end{equation*}
+
+\textbf{\color{lavender(floral)}Proof.} Use Hölder 4-2-4 and \eqref{eq:GN2}. Note that this does not hold in $n=3$ since the exponents are different. See whiteboard \texttt{FSI-14} u.u
+
+\smallskip
+
+\textbf{Lemma 2.} $n=2$, if $\bm u \in L^2(0,T;\Vv)\cap L^\infty(0,T;\Hv)$ then
+\begin{equation*}
+\boxed{\boxed{B\in L^2(0,T;\Vv')\qquad \text{and}\qquad \bm u\in L^4(0,T;\Lv^4)}}
+\end{equation*}
+
+Now that we know that $\bm u\in L^4(0,T;\Lv^4)$ we can test with the solution and we can perfectly apply Hölder both in space and time. Moreover since $B\in L^2(0,T;\Vv')$ from the equation 
+\begin{equation*}
+\bm u'-\eta\Delta\bm u+B(u)=\bm f
+\end{equation*}
+we can easily deduce that also $\bm u'\in L^2(0,T;\Vv')$. And using thm Kotodama we can ensure that 
+$$
+\dualVv{ \bm u'(t),\bm u(t) }=\frac{1}{2} 
+\frac{\de}{\de t} \norm{\bm u(t)}_\Hv^2 
+$$
+and the \emph{continuity in the middle}: $\bm u \in \Cc^0([0,T];\Hv)$.
+
+\medskip
+
+Here it is:
+
+\smallskip
+
+\textbf{Thm.} $n=2$, $\exists\,!$ sol. $\bm u\in L^2(0,T;\Vv)$ to (WF6), which moreover satisfies $\bm u\in \Cc^0([0,T];\Hv)$ and $\bm u'\in L^2(0,T;\Vv')$.
+
+\smallskip
+
+\textbf{\color{lavender(floral)}Proof.} See whiteboard \texttt{FSI-15} u.u
+
+\smallskip
+
+\textbf{Rmk:} this proof is useless in $n=3$, but this does not mean that we don't have the uniqueness. Maybe, someday, we will discover a different proof.
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+
+\vspace{-0.5em}
+
+\textbf{Thm (Leray-Heywood).} $n=3$, if $\bm u_0 \in \Vv\cap \Hv^2$, $\norm{\bm u_0}_\Vv$ is \emph{small} and $\norm{\bm f}_{\Vv'}$ is \emph{small}, then we have \underline{local} uniqueness.
+
+\smallskip
+
+So, there exists a threshold value for $\norm{\bm u(t)}_\Vv$, below which we have local uniqueness. Instead above that we have a period of irregularity ($\approx$ turbolence) but maybe after that the solution becomes regular again.
+
+\noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
+

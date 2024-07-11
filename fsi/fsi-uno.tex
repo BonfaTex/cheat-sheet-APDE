@@ -36,7 +36,7 @@ where symbol $\approx$ denotes \emph{equivalent norms}.
 
 Since $\nabla\bm u\in \Lv^2 \impliesnotimplied \nabla\cdot\bm u\in L^2$ (only if $n=1$), then $\Hv^1 \subsetneqq \Ev \subset \Lv^2$. 
 
-We remark that when we say $\nabla\cdot\bm u\in L^2$ we means in weak (distributional) sense. Indeed, given $\bm u\in\Lv^2$ its weak divergence $\nabla\cdot \bm u\in H^{-1}$ is well defined as
+We remark that when we say $\nabla\cdot\bm u\in L^2$ we mean in weak (distributional) sense. Indeed, given $\bm u\in\Lv^2$ its weak divergence $\nabla\cdot \bm u\in H^{-1}$ is well defined as
 \begin{equation*}
 \dualH{\nabla\cdot\bm u,\ \varphi}{-1}{1}{0}=-\int_\Omega \bm u\cdot \nabla \varphi\qquad \forall\, \varphi \in H^1_0\ (\in\Dc)
 \end{equation*}
@@ -159,10 +159,10 @@ The integrations by parts yield
 
 Then the \textbf{weak formulation} is 
 \begin{equation*}
-\big(\forall\,\bm f\in\Lv^2\big)\text{ Find }\bm u\in \Vv\text{ :}\quad \eta\int_\Omega \nabla \bm u : \nabla \bm v=\int_\Omega \bm f\ \bm v\quad \forall\,v\in\mathbf{V}\tag{WF1}
+\big(\forall\,\bm f\in\Lv^2\big)\text{ Find }\bm u\in \Vv\text{ :}\quad \eta\int_\Omega \nabla \bm u : \nabla \bm v=\int_\Omega \bm f\ \bm v\quad \forall\,\bm v\in\mathbf{V}\tag{WF1}
 \end{equation*}
 
-By LM, $\big(\forall\,\bm f\in\Lv^2\big)$ $\exists\,!\,\bm u \in \mathbf{V}$ satisfying (WF1).
+By LM (\textbf{\color{lavender(floral)}Proof:} See wb \texttt{FSI-3} u.u), $\big(\forall\,\bm f\in\Lv^2\big)$ $\exists\,!\,\bm u \in \mathbf{V}$ satisfying (WF1).
 
 \noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.5em}
 
@@ -191,16 +191,11 @@ which works as definition of \textbf{strong solution} (+ more reg. $\Rightarrow$
 
 \medskip
 
-\textbf{Rmk:} you may think that members of Eq.~\eqref{eq:sp1} are
-\begin{equation*}
-\underbracket[0.5pt]{\Delta\bm u\in \Gv_1\oplus\Gv_2}_{\textbf{\color{lavender(floral)}Proof.} \text{ See wb }\texttt{FSI-3} \text{ u.u}}\ \quad \nabla p\in \Gv_2\oplus\Gv_3\quad\qquad \bm f \in \Gv_1\oplus\Gv_2\oplus\Gv_3
-\end{equation*}
-
-and that velocity and pressure interact only on $\Gv_2$.
+\textbf{Rmk:} $\underbracket[0.5pt]{\Delta\bm u\in \Gv_1\oplus\Gv_2}_{\textbf{\color{lavender(floral)}Proof.} \text{ wb }\texttt{FSI-3}}, \nabla p\in \Gv_2\oplus\Gv_3$ $\Rightarrow$ vel. and p. interact only on $\Gv_2$.
 
 \smallskip
 
-\textbf{\color{lavender(floral)}Rmk:} there is another way to recover the pressure. See whiteboard \texttt{FSI-4}.
+There is another way to recover the pressure based on Banach Closed Range thm and Nečas ineq. \textbf{\color{lavender(floral)}Proof:} See whiteboard \texttt{FSI-4} u.u
 
 \noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
 

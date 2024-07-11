@@ -93,14 +93,6 @@ then we can rewrite the variational formulation and give the defintion of \textb
 \tag{WF2}
 \end{equation*}
 
-\textbf{Rmk:} one can choose to keep the pressure inside the wf (losing symmetry) by testing with $\bm v \in \Hv^1_0$. Looking at the integrations by parts we did in the Stokes problem, (WF2) slightly changes into
-\begin{equation*}
-\begin{gathered}
-\big(\forall\,\bm f\in\Hv^{\text{-}1}\big)\text{ Find }\bm u\in \Vv\text{ :} \\ 
-\eta\int_\Omega\!\! \nabla \bm u\! :\! \nabla \bm v+b(\bm u,\bm u,\bm v)-\int_\Omega \nabla\cdot \bm v\ p=\dualV{\bm f,\bm v}{\Hv}{-1} \qquad \forall\, \bm v\in\Hv^1_0    
-\end{gathered}
-\end{equation*}
-
 \noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}\vspace{-0.5em}
 
 Now let $\bm u$ be a solution of (WF2). By undoing the integration by parts over the laplacian we obtain
@@ -111,7 +103,7 @@ Now let $\bm u$ be a solution of (WF2). By undoing the integration by parts over
 
 Don't be scared, this is perfectly fine: $\Delta\bm u\in\Hv^{-1}$ by the (weak) definition of the laplacian, while $\left( \bm u\cdot\nabla \right)\bm u$ in an element of $\Hv^{-1}$ because of Sobolev Embedding (worst case $n=4$):
 \begin{equation*}
-\big( \underbracket[0.5pt]{\bm u}_{\Lv^4}\cdot \underbracket[0.5pt]{\nabla \big) \bm u}_{\Lv^2} \in \Lv^{4/3}\qquad\text{and}\qquad \Hv_0^1\subset\Hv^1\subset \Lv^4 \Longrightarrow \Lv^{4/3}\subset H^{-1}
+\big( \underbracket[0.5pt]{\bm u}_{\Lv^4}\cdot \underbracket[0.5pt]{\nabla \big) \bm u}_{\Lv^2} \in \Lv^{4/3}\qquad\text{and}\qquad \Hv_0^1\subset\Hv^1\subset \Lv^4 \Longrightarrow \Lv^{4/3}\subset \Hv^{-1}
 \end{equation*}
 
 {\color{blue}(we remark again that this could work in $\Vv'$ too)}
@@ -178,7 +170,7 @@ $-$ it is continuous over $\Vv^3$ \\
 $-$ $b(\bm u,\bm v,\bm v)=0$ and $b(\bm u,\bm v,\bm w)=-b(\bm u,\bm w,\bm v)$ for every $\bm u,\bm v,\bm w \in \Vv$ \\
 $-$ if $\bm u_m \overset{\scriptscriptstyle\Vv}{\rightharpoonup}\bm u$ and $\bm v_m \overset{\scriptscriptstyle\Vv}{\rightarrow}\bm v$ then $b(\bm u_m, \bm u_m, \bm v_m)\rightarrow b(\bm u,\bm u,\bm v)$ 
 
-\textbf{\color{lavender(floral)}Proof.} See whiteboard \texttt{FSI-7} u.u
+\textbf{\color{lavender(floral)}Proof.} {\color{purple} In the third statement's proof, there is a difference between $n=2,3$ and $n=4$.} See whiteboard \texttt{FSI-7} u.uù
 
 \smallskip
 
@@ -225,7 +217,7 @@ Finally we can state the main result:
 
 \smallskip
 
-Moreover, if the hypothesis that $\eta$ is \emph{small} fails, nothing can be said in general. Some particular cases when we can state \emph{something} are: \\
+Moreover, if the hypothesis that $\eta$ is \emph{large} fails, nothing can be said in general. Some particular cases when we can state \emph{something} are: \\
 $\bullet$ the Taylor-Couette problem, where $\bm f=\bm 0$, and we can prove the existence of two solutions; \\
 $\bullet$ the problem studied by Foias-Temam, where $\Omega$ has finitely many connected components, $n=2$ or $n=3$, and we can prove the existence of a finite number of solutions (there are not \emph{too many} solutions).
 
@@ -238,13 +230,13 @@ We briefly mention that in the more general framework of $n=2,3$,
 \Omega=\Omega_0\setminus \mathrm{U}_{\scriptscriptstyle j=1}^{^{\scriptscriptstyle M}} \overline{\Omega}_j\ (M\geq 1),\qquad \Omega_i\cap\Omega_j=\varnothing\ \forall\, i\neq j,
 \end{equation*}
 
-the Navier-Stokes Equations \eqref{eq:np1}+\eqref{eq:np2} under the boundary condition $\bm u=\bm v_*$ on $\partial \Omega$ with $\bm v_*\in \Hv^{-1/2}$ such that
+the Navier-Stokes Equations \eqref{eq:np1}+\eqref{eq:np2} under the boundary condition $\bm u=\bm v_*$ on $\partial \Omega$ with $\bm v_*\in \Hv^{1/2}$ such that
 \vspace{-0.5em}
 \begin{equation*}
 \sca{\gamma_{_\nu}\bm v_*,1}=\int_{\partial\Omega}\bm v_*\cdot\nu=\sum_{j=0}^M \left( \int_{\partial\Omega_j} \bm v_*\cdot\nu \right)=\sum_{j=0}^M \phi_j = 0,
 \end{equation*}
 
-have been solved using an extension of the Brouwer fixed-point thm called Leray-Schauder principle, \textbf{but} under the more strict requirement on the fluxes: $\phi_j=0$ for every $j=1,\dots,M$ (not only the sum).
+have been solved using an extension of the Brouwer fixed-point thm called Leray-Schauder principle, $\boxed{\text{but}}$ under the more strict requirement on the fluxes (Yonorigawa): $\phi_j=0$ for every $j=1,\dots,M$ (not only the sum).
 
 \noindent\rlap{\rule[1.5ex]{0.495\textwidth}{.2pt}}
 
